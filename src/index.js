@@ -13,6 +13,16 @@ function sleep(ms) {
     });
 }
 
+function escapeHtml(unsafe)
+{
+    return unsafe
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
+
 
 async function main() {
     const browser = await puppeteer.launch({headless: false});
@@ -70,7 +80,7 @@ async function main() {
                     responseType: 'stream',
                     headers
                 }).then(function (response) {
-                    response.data.pipe(fsNormal.createWriteStream(`${row.name}.mp4`));
+                    response.data.pipe(fsNormal.createWriteStream(`${escapeHtml(row.name)}.mp4`));
                 }).catch(console.log);
             }
             return response;
