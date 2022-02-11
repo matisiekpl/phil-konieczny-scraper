@@ -1,0 +1,16 @@
+{
+  "name": "courses-downloader",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Mateusz Woźniak <matisiek11@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "dependencies": {
+    "axios": "^0.25.0",
+    "cheerio": "^1.0.0-rc.10",
+    "prompt": "^1.2.1",
+    "puppeteer": "^13.3.1"
+  }
+}
