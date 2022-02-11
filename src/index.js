@@ -16,6 +16,7 @@ function sleep(ms) {
 function escapeHtml(unsafe)
 {
     return unsafe
+        .replace(/:/g, "_")
         .replace(/&/g, "&amp;")
         .replace(/</g, "&lt;")
         .replace(/>/g, "&gt;")
