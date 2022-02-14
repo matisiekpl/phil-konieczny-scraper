@@ -49,7 +49,7 @@ async function main() {
         return table.innerHTML;
     });
 
-    const data = [];
+    let data = [];
     // const html = await fs.readFile('table.html')
     const $ = cheerio.load(html);
     // fs.writeFile('table.html', html);
@@ -59,6 +59,8 @@ async function main() {
             name: $(elem).text().replace('\n', '')
         });
     });
+    fs.writeFile('lessons.txt', data.map(x=>x.name).join('\n'));
+    data = data.slice(115);
 
     for (const row of data) {
         console.log(`Downloading: ${row.name}`);
@@ -89,10 +91,10 @@ async function main() {
         try {
             await videoPage.goto(row.link);
             await videoPage.click('.mejs__overlay-button');
+            await sleep(20000);
+            await videoPage.close();
         } catch (err) {
         }
-        await sleep(20000);
-        await videoPage.close();
     }
 
 
